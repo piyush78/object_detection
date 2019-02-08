@@ -27,8 +27,8 @@ args = parser.parse_args()
 credentials_1 = {
   'bucket': args.bucket,
   'iam_url': 'https://iam.ng.bluemix.net/oidc/token',
-  'api_key': os.getenv('API_KEY'),
-  'resource_instance_id': os.getenv('RESOURCE_INSTANCE_ID'),
+  'api_key': os.getenv('0KqEjmyWRAs8P0Zl0_QYEYXHZyav7ikVaE5ODLLL3_ZY'),
+  'resource_instance_id': os.getenv('crn:v1:bluemix:public:cloud-object-storage:global:a/3386c4d9560f406c8901e67f0c0cfe06:f7e29f38-761c-4dc5-aeb2-83c1084f4715::'),
   'url': args.endpoint
 }
 
@@ -37,8 +37,8 @@ credentials_1 = {
 # Initialize Cloud Object Storage
 ################################################################################
 cos = ibm_boto3.resource('s3',
-    ibm_api_key_id=credentials_1['api_key'],
-    ibm_service_instance_id=credentials_1['resource_instance_id'],
+    ibm_api_key_id=credentials_1['0KqEjmyWRAs8P0Zl0_QYEYXHZyav7ikVaE5ODLLL3_ZY'],
+    ibm_service_instance_id=credentials_1['crn:v1:bluemix:public:cloud-object-storage:global:a/3386c4d9560f406c8901e67f0c0cfe06:f7e29f38-761c-4dc5-aeb2-83c1084f4715::'],
     ibm_auth_endpoint=credentials_1['iam_url'],
     config=Config(signature_version='oauth'),
     endpoint_url=credentials_1['url']
@@ -54,24 +54,24 @@ def askForBucket():
         bucket_list.append(bucket.name)
         print('  {}) {}'.format(i + 1, bucket.name))
 
-    bucket_id_name = input("Bucket: ")
+    bucket_id_name = input("Bucket: objects-detection")
 
     if bucket_id_name in bucket_list:
-        credentials_1['bucket'] = bucket_id_name
+        credentials_1['objects-detection'] = bucket_id_name
     else:
         try:
            bucket_id_name = int(bucket_id_name)
            if bucket_id_name <= len(bucket_list):
-               credentials_1['bucket'] = bucket_list[bucket_id_name - 1]
+               credentials_1['objects-detection'] = bucket_list[bucket_id_name - 1]
            else:
-               print('\nPlease choose a valid bucket:')
+               print('\nPlease choose a valid bucket:objects-detection')
                askForBucket()
         except ValueError:
-            print('\nPlease choose a valid bucket:')
+            print('\nPlease choose a valid bucket:objects-detection')
             askForBucket()
 
 if credentials_1['bucket'] == None:
-    print('\nPlease choose a bucket:')
+    print('\nPlease choose a bucket:objects-detection')
     askForBucket()
 
 
