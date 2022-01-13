@@ -21,7 +21,7 @@ kiwisolver==1.0.1
 Markdown==3.0.1
 matplotlib==3.0.2
 numpy==1.15.1
-Pillow==5.4.1
+Pillow==9.0.0
 protobuf==3.6.1
 pycocotools==2.0.0
 pyparsing==2.3.1
